@@ -1,0 +1,32 @@
+{
+    "name": "Shorten",
+    "description": "A simple url shortener.",
+    "version": "0.0.1",
+    "keywords": [
+	"shorten",
+	"url",
+	"shortener",
+	"free software"
+    ],
+    "repository": {
+	"type": "git",
+	"url": "https://gitlab.com/Emeraude/shorten"
+    },
+    "author": {
+	"name": "Emeraude",
+	"email": "broggi_t@epitech.eu",
+	"url": "http://broggit.me"
+    },
+    "license": "WTFPL",
+    "dependencies": {
+	"express": "~4.9.8",
+	"mariasql": "~0.1.21"
+    },
+    "homepage": "https://gitlab.com/Emeraude/shorten",
+    "os": [
+	"linux"
+    ],
+    "scripts": {
+	"start": "node srv.js"
+    }
+}
