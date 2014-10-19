@@ -1,7 +1,10 @@
-#SHORTEN
+# SHORTEN
 
-A simple url shortener developped in node.js.
+A simple url shortener developped in node.js.  
 
-##AUTHOR
+		npm install
+		node srv.js
+
+## AUTHOR
 
 Emeraude
