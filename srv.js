@@ -12,7 +12,8 @@ db.connect({
 });
 
 app.use(require('compression')())
-    .use(require('serve-static')('public/'));
+    .use(require('serve-static')('public/'))
+    .engine('jade', require('jade').__express);
 
 var links = {};
 
