@@ -1,9 +1,11 @@
 #!/usr/bin/node
 
-var app = require('express')();
 var mariadb = require('mariasql');
 var anybase = require('anybase');
 var render = require('./render');
+var app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 var db = new mariadb();
 db.connect({
@@ -13,10 +15,10 @@ db.connect({
     db: 'shorten'
 });
 
+server.listen(8080);
 app.use(require('compression')())
     .use(require('serve-static')('public/'))
-    .engine('jade', require('jade').__express)
-    .listen(8080);
+    .engine('jade', require('jade').__express);
 
 var links = {};
 var shorted = {};
@@ -38,9 +40,10 @@ db.query('SELECT * FROM Links')
 	    }
 	    else
 		render.render(req, res);
-	})
-	.get('*', render.render);
+	}).get('*', render.render);
     });
 
-
+io.on('connection', function(socket) {
+    console.log(socket);
+});
 db.end();

@@ -43,3 +43,8 @@ form#short > div > input[type=text] {
     border-bottom-left-radius: 10px;
     background-color: transparent;
 }
+
+div#content {
+    margin-top: 5%;
+    font-size: 1.5em;
+}
