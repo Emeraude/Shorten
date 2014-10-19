@@ -32,10 +32,14 @@ form#short > div > input {
 form#short > div > input[type=submit] {
     right: 0;
     border-bottom-right-radius: 10px;
+    background-color: #f50;
+    color: white;
+    cursor: pointer;
 }
 
 form#short > div > input[type=text] {
     left: 0;
+    width: 100%;
     border-bottom-left-radius: 10px;
     background-color: transparent;
 }
