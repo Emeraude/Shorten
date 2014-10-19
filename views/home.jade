@@ -1,0 +1,13 @@
+doctype html
+html(lang='en')
+  head
+    meta(name='author', content='Emeraude')
+    meta(charset='utf-8')
+    meta(name='descriptio' content='A simple free url shortener')
+    title Shorten
+    link(rel='stylesheet', href='style.css')
+  body
+    form#short(action='#', onsubmit='return false')
+      div
+        input(type='text', placeholder='Enter a link to shorten', autofocus)
+        input(type='submit', value='Shorten it!')

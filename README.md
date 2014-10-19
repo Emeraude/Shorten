@@ -1,6 +1,6 @@
 # SHORTEN
 
-A simple url shortener developped in node.js.  
+A simple free url shortener developped in node.js.  
 
 		npm install --python=python2.7
 		mysql -u root -p < db.sql

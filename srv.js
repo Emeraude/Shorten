@@ -3,6 +3,7 @@
 var app = require('express')();
 var mariadb = require('mariasql');
 var anybase = require('anybase');
+var render = require('./render');
 
 var db = new mariadb();
 db.connect({
@@ -24,20 +25,21 @@ db.query('SELECT * FROM Links')
     .on('result', function(res) {
 	res.on('row', function(row) {
 	    links[row.url] = row.id;
-	    shorted[row.id] = row.url;
+	    shorted[anybase(16, row.id, 10)] = row.url;
 	});
     })
     .on('end', function() {
 	app.get('/:nb', function(req, res) {
 	    if (req.params.nb.match(/[\da-f]+/i)
-		&& shorted[anybase(10, req.params.nb.toUpperCase(), 16)]) {
+		&& shorted[req.params.nb.toUpperCase()]) {
 		res.status(302)
-		    .set('Location', shorted[anybase(10, req.params.nb.toUpperCase(), 16)])
+		    .set('Location', shorted[req.params.nb.toUpperCase()])
 		    .end();
 	    }
 	    else
-		;// home page
+		render.render(req, res);
 	})
+	.get('*', render.render);
     });
 
 
