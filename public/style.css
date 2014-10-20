@@ -9,6 +9,7 @@ form#short {
     right: 25%;
     left: 25%;
     bottom: 90%;
+    z-index: 1;
 }
 
 form#short > div {
@@ -46,11 +47,30 @@ form#short > div > input[type=text] {
 }
 
 div#shortened {
-    margin-top: 5%;
-    font-size: 1.5em;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 10%;
 }
 
-div#shortened > div {
+div#shortened > p {
+    width: 100%;
     height: 50px;
     position: relative;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+div#shortened > p + p {
+    border-top: 1px solid #aaa;
+}
+
+div#shortened > p > a {
+    text-decoration: none;
+    color: #f50;
+    font-weight: bolder;
+}
+
+div#shortened > p > a + br + span.original {
+    padding-left: 50px;
 }

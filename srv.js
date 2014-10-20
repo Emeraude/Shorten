@@ -48,7 +48,11 @@ db.query('SELECT * FROM Links')
 io.on('connection', function(socket) {
     socket.on('shorten-it', function(url) {
 	if (links[url])
-	    socket.emit('shortened', socket.handshake.headers.referer + links[url]);
+	    socket.emit('shortened',
+			{
+			    original: url,
+			    short: socket.handshake.headers.referer + links[url]
+			});
 	else {
 	    db.query('INSERT INTO Links(url) VALUES(:url)', {url: url})
 		.on('end', function() {
@@ -57,7 +61,11 @@ io.on('connection', function(socket) {
 			    res.on('row', function(row) {
 				links[row.url] = anybase(62, row.id, 10);
 				shorted[anybase(62, row.id, 10)] = row.url;
-				socket.emit('shortened', socket.handshake.headers.referer + links[url]);
+				socket.emit('shortened',
+					    {
+						original: url,
+						short: socket.handshake.headers.referer + links[url]
+					    });
 			    });
 			});
 		});
