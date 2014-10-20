@@ -26,8 +26,8 @@ var shorted = {};
 db.query('SELECT * FROM Links')
     .on('result', function(res) {
 	res.on('row', function(row) {
-	    links[row.url] = anybase(16, row.id, 10);
-	    shorted[anybase(16, row.id, 10)] = row.url;
+	    links[row.url] = anybase(62, row.id, 10);
+	    shorted[anybase(62, row.id, 10)] = row.url;
 	});
     })
     .on('end', function() {
@@ -35,7 +35,7 @@ db.query('SELECT * FROM Links')
 	    if (req.params.nb.match(/[\da-f]+/i)
 		&& shorted[req.params.nb.toUpperCase()]) {
 		res.status(302)
-		    .set('Location', shorted[req.params.nb.toUpperCase()])
+		    .set('Location', shorted[req.params.nb])
 		    .end();
 	    }
 	    else
@@ -47,7 +47,6 @@ db.query('SELECT * FROM Links')
 
 io.on('connection', function(socket) {
     socket.on('shorten-it', function(url) {
-	console.log(url);
 	if (links[url])
 	    socket.emit('shortened', socket.handshake.headers.referer + links[url]);
 	else {
@@ -56,8 +55,8 @@ io.on('connection', function(socket) {
 		    db.query('SELECT * FROM Links WHERE url=:url', {url: url})
 			.on('result', function(res) {
 			    res.on('row', function(row) {
-				links[row.url] = anybase(16, row.id, 10);
-				shorted[anybase(16, row.id, 10)] = row.url;
+				links[row.url] = anybase(62, row.id, 10);
+				shorted[anybase(62, row.id, 10)] = row.url;
 				socket.emit('shortened', socket.handshake.headers.referer + links[url]);
 			    });
 			});
