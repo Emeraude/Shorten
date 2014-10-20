@@ -47,9 +47,8 @@ db.query('SELECT * FROM Links')
 
 io.on('connection', function(socket) {
     socket.on('shorten-it', function(url) {
-	if (links[url]) {
-	    // link already exists
-	}
+	if (links[url])
+	    socket.emit('shortened', socket.handshake.headers.referer + links[url]);
 	else {
 	    // adding link
 	}

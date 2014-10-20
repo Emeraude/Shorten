@@ -6,4 +6,8 @@ $(function() {
 	/* make the loading spin visible */
 	e.preventDefault();
     });
+
+    socket.on('shortened', function(shortened) {
+	console.log(shortened);
+    });
 });
