@@ -4,7 +4,7 @@ body {
 }
 
 form#short {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 25%;
     left: 25%;
@@ -35,6 +35,7 @@ form#short > div > input[type=submit] {
     background-color: #f50;
     color: white;
     cursor: pointer;
+    min-width: 12%;
 }
 
 form#short > div > input[type=text] {
@@ -44,7 +45,12 @@ form#short > div > input[type=text] {
     background-color: transparent;
 }
 
-div#content {
+div#shortened {
     margin-top: 5%;
     font-size: 1.5em;
+}
+
+div#shortened > div {
+    height: 50px;
+    position: relative;
 }
