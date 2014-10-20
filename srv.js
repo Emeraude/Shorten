@@ -40,10 +40,19 @@ db.query('SELECT * FROM Links')
 	    }
 	    else
 		render.render(req, res);
-	}).get('*', render.render);
+	}).use(function(req, res, next) {
+	    render.render(req, res);
+	});
     });
 
 io.on('connection', function(socket) {
-    console.log(socket);
+    socket.on('shorten-it', function(url) {
+	if (links[url]) {
+	    // link already exists
+	}
+	else {
+	    // adding link
+	}
+    });
 });
 db.end();

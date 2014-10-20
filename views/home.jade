@@ -8,10 +8,10 @@ html(lang='en')
     link(rel='stylesheet', href='/style.css')
     script(src='/jquery-1.11.1.min.js')
     script(src='/spin.min.js')
-
+    script(src='/socket.io/socket.io.js')
     script(src='/shorten.js')
   body
-    form#short(action='#', onsubmit='return false')
+    form#short(action='#')
       div
         input(type='text', placeholder='Enter a link to shorten', autofocus)
         input(type='submit', value='Go!')
