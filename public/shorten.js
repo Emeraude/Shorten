@@ -9,5 +9,6 @@ $(function() {
 
     socket.on('shortened', function(shortened) {
 	console.log(shortened);
+	/* hide the loading spin */
     });
 });

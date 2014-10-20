@@ -26,7 +26,7 @@ var shorted = {};
 db.query('SELECT * FROM Links')
     .on('result', function(res) {
 	res.on('row', function(row) {
-	    links[row.url] = row.id;
+	    links[row.url] = anybase(16, row.id, 10);
 	    shorted[anybase(16, row.id, 10)] = row.url;
 	});
     })
@@ -47,11 +47,21 @@ db.query('SELECT * FROM Links')
 
 io.on('connection', function(socket) {
     socket.on('shorten-it', function(url) {
+	console.log(url);
 	if (links[url])
 	    socket.emit('shortened', socket.handshake.headers.referer + links[url]);
 	else {
-	    // adding link
+	    db.query('INSERT INTO Links(url) VALUES(:url)', {url: url})
+		.on('end', function() {
+		    db.query('SELECT * FROM Links WHERE url=:url', {url: url})
+			.on('result', function(res) {
+			    res.on('row', function(row) {
+				links[row.url] = anybase(16, row.id, 10);
+				shorted[anybase(16, row.id, 10)] = row.url;
+				socket.emit('shortened', socket.handshake.headers.referer + links[url]);
+			    });
+			});
+		});
 	}
     });
 });
-db.end();
