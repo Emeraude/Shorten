@@ -16,7 +16,7 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 CREATE DATABASE IF NOT EXISTS `shorten`;
-USE `shorten`
+USE `shorten`;
 
 --
 -- Table structure for table `Links`
@@ -26,9 +26,8 @@ USE `shorten`
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE IF NOT EXISTS `Links` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `url` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `url` (`url`)
+  `url` text NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

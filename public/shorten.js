@@ -5,8 +5,8 @@ $(function() {
  	var url = $(this).find('input[type=text]').val();
 	socket.emit('shorten-it', url);
 	var spinner = new Spinner({
-	    top: '15px',
-	    left: '15px',
+	    top: '25px',
+	    left: '25px',
 	    corners: 1.0,
 	}).spin();
 	$('div#shortened').append($('<p data-url="'+url+'">').append(spinner.el));

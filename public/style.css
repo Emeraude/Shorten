@@ -73,4 +73,5 @@ div#shortened > p > a {
 
 div#shortened > p > a + br + span.original {
     padding-left: 50px;
+    white-space: nowrap;
 }
