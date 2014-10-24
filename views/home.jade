@@ -11,6 +11,8 @@ html(lang='en')
     script(src='/socket.io/socket.io.js')
     script(src='/shorten.js')
   body
+    a#forkMe(href='https://github.com/Emeraude/Shorten')
+      img(src='/forkMe.png' alt='Fork me on GitHub')
     form#short
       div
         input(id='url', type='text', placeholder='Enter a link to shorten', autofocus)

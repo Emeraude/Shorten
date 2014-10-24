@@ -20,6 +20,7 @@ form#short > div {
     border-top: 0px solid transparent;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
+    background-color: white;
 }
 
 form#short > div > input {
@@ -74,4 +75,12 @@ div#shortened > p > a {
 div#shortened > p > a + br + span.original {
     padding-left: 50px;
     white-space: nowrap;
+}
+
+a#forkMe > img {
+    position: fixed;
+    top: 0;
+    right: 0;
+    border: 0;
+    z-index: 2;
 }

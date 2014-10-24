@@ -7,9 +7,8 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 8080;
 var host = process.env.HOST || '0.0.0.0';
-var dbConfig = require('./db.config.json');
 var db = new mariadb();
-db.connect(dbConfig);
+db.connect(require('./db.config.json'));
 
 server.listen(port, host, function(err) {
     if (err) throw err;
