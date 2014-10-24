@@ -2,19 +2,14 @@
 
 var mariadb = require('mariasql');
 var anybase = require('anybase');
-var render = require('./render');
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 8080;
 var host = process.env.HOST || '0.0.0.0';
+var dbConfig = require('./db.config.json');
 var db = new mariadb();
-db.connect({
-    host: '127.0.0.1',
-    user: 'root',
-    password: '',
-    db: 'shorten'
-});
+db.connect(dbConfig);
 
 server.listen(port, host, function(err) {
     if (err) throw err;
@@ -38,16 +33,16 @@ db.query('SELECT * FROM Links')
     })
     .on('end', function() {
 	app.get('/:nb', function(req, res) {
-	    if (req.params.nb.match(/[\da-f]+/i)
+	    if (req.params.nb.match(/[\da-z]+/i)
 		&& shorted[req.params.nb.toUpperCase()]) {
 		res.status(302)
 		    .set('Location', shorted[req.params.nb])
 		    .end();
 	    }
 	    else
-		render.render(req, res);
+		res.render('home.jade');
 	}).use(function(req, res, next) {
-	    render.render(req, res);
+	    res.render('home.jade');
 	});
     });
 

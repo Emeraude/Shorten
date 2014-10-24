@@ -2,13 +2,19 @@ $(function() {
     var socket = io.connect(location.origin);
 
     $('form#short').submit(function(e) {
- 	var url = $(this).find('input[type=text]').val();
-        var RegexUrl = /(nfs|sftp|ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
-        if (RegexUrl.test(url) == false) {
-	    $('#url').css('border', '2px solid red');
+ 	var url = $('#url').val();
+        var regexUrl = /(nfs|sftp|ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+        if (regexUrl.test(url) == false) {
+	    $('form#short > div').css({
+		'border': '3px solid red',
+		'border-top': '0px solid transparent'
+	    });
 	}
 	else {
-	    $('#url').css('border', '1px solid gray');
+	    $('form#short > div').css({
+		'border': '1px solid grey',
+		'border-top': '0px solid transparent'
+	    });
 	    socket.emit('shorten-it', url);
 	    var spinner = new Spinner({
 		top: '25px',

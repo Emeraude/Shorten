@@ -6,6 +6,10 @@ A simple free url shortener developped in node.js.
 		mysql -u root -p < db.sql
 		node srv.js
 
-## AUTHOR
+### AUTHOR
 
 Emeraude
+
+### CONTRIBUTORS
+
+Alpha14
