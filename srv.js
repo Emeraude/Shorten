@@ -6,16 +6,22 @@ var render = require('./render');
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-
+var port = process.env.PORT || 8080;
+var host = process.env.HOST || '0.0.0.0';
 var db = new mariadb();
 db.connect({
     host: '127.0.0.1',
     user: 'root',
-    password: 'toor',
+    password: '',
     db: 'shorten'
 });
 
-server.listen(8080);
+server.listen(port, host, function(err) {
+    if (err) throw err;
+    else
+	console.log("Shorten started on " + host + ":" + port);
+})
+
 app.use(require('compression')())
     .use(require('serve-static')('public/'))
     .engine('jade', require('jade').__express);
