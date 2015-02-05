@@ -1,7 +1,7 @@
 {
     "name": "Shorten",
     "description": "A simple free url shortener.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "keywords": [
 	"shorten",
 	"url",

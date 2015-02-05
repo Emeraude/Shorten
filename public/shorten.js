@@ -5,13 +5,13 @@ $(function() {
  	var url = $('#url').val();
         var regexUrl = /(nfs|sftp|ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
         if (regexUrl.test(url) == false) {
-	    $('form#short > div').css({
+	    $('form#short').css({
 		'border': '3px solid red',
 		'border-top': '0px solid transparent'
 	    });
 	}
 	else {
-	    $('form#short > div').css({
+	    $('form#short').css({
 		'border': '1px solid grey',
 		'border-top': '0px solid transparent'
 	    });
